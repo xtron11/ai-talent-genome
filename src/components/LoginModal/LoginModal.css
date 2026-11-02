@@ -1,0 +1,567 @@
+/* 1. Фон (Оверлей) - Оставляем "бронебойным" */
+.modal-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important; /* Убедись, что высота полная */
+  background: rgba(0, 0, 0, 0.4) !important;
+  
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  
+  z-index: 999999 !important;
+  pointer-events: auto !important;
+  
+  /* --- ДОБАВЬ ЭТИ СТРОКИ --- */
+  overflow: hidden !important; 
+}
+
+/* 2. Основное окно - Подгоняем под твой дизайн */
+.modal-content {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  
+  width: 490px !important;
+  /* УМЕНЬШАЕМ МИНИМАЛЬНУЮ ВЫСОТУ */
+  min-height: 480px !important; 
+  
+  background: #ffffff !important;
+  border-radius: 32px !important;
+  padding: 32px 0 !important; /* Боковые отступы теперь 0 */
+  box-sizing: border-box !important;
+  
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 24px !important;
+  
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2) !important;
+  border: none !important;
+  pointer-events: auto !important;
+  z-index: 1000000 !important;
+}
+
+/* 3. ОГРАНИЧИТЕЛЬНЫЙ КОНТЕЙНЕР (Секрет ровности) */
+.modal-body-container {
+  width: 392px !important;
+  max-width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 24px !important;
+  /* Убедись, что тут НЕТ overflow: visible, если текст вылетает */
+}
+
+/* 4. Шапка */
+.modal-header {
+  width: 392px; /* Тоже ограничиваем, чтобы стрелка не улетела слишком далеко */
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.back-button {
+  position: absolute;
+  left: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.modal-logo {
+  display: flex;
+  align-items: center;
+  gap: 23px; 
+  margin: 0 auto;
+}
+
+.logo-icon-svg {
+  width: 20px;
+  height: 43px;
+  flex-shrink: 0;
+}
+
+.logo-text-modal {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: #323333;
+}
+
+/* 5. Заголовок */
+.modal-main-title {
+  width: 100%;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  text-align: center;
+  color: #323333;
+  margin: 0;
+}
+
+/* 6. Общие стили для ВСЕХ кнопок и инпутов */
+.method-selector,
+.input-field-wrapper,
+.login-submit-btn,
+.social-group,
+.social-login-btn {
+  width: 100% !important; /* Теперь они все будут ровно 392px */
+  box-sizing: border-box;
+}
+
+/* 7. Переключатель */
+.method-selector {
+  display: flex;
+  background: #F3F5F5;
+  /* Ставим 3px сверху/снизу и 4px по бокам для ширины 192 */
+  padding: 3px 4px; 
+  border-radius: 14px;
+  width: 392px; 
+  height: 54px; /* Теперь высота ровно 54px */
+  box-sizing: border-box;
+}
+
+.method-btn {
+  /* Геометрия кнопки из макета */
+  width: 192px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Общие настройки шрифта для обеих кнопок */
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600; /* SemiBold */
+  font-size: 18px;
+  line-height: 24px; /* Высота строки 24px */
+  text-align: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  /* Цвет для неактивного состояния (Телефон) */
+  color: #CCCCCC; 
+}
+
+.method-btn.active {
+  /* Стили для активного состояния (Email) */
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  
+  /* Цвет активного текста */
+  color: #323333;
+}
+
+/* 8. Поля ввода */
+.input-field-wrapper {
+  position: relative;
+  width: 100%; /* Чтобы обертка занимала все 392px */
+  display: flex;
+  align-items: center;
+}
+
+.login-input {
+  width: 100%;
+  height: 56px;
+  border: 1.5px solid #E0E0E0;
+  border-radius: 16px;
+  /* 48px слева для иконки, 16px справа (если нет глазика) */
+  /* Если глазик есть, мы переопределим это ниже */
+  padding: 0 16px 0 48px; 
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  color: #323333;
+  background: transparent;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.login-input:focus {
+  border-color: #323333; /* Подсветка при клике */
+}
+
+/* Левая иконка (Email, Телефон, Замок) */
+.input-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none; /* Чтобы не мешала клику по инпуту */
+  z-index: 2;
+}
+
+/* Кнопка-глазик справа */
+.password-toggle {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  z-index: 2;
+}
+
+/* Специальный паддинг для инпута пароля, чтобы текст не заходил под глазик */
+.input-field-wrapper:has(.password-toggle) .login-input {
+  padding-right: 48px;
+}
+
+/* 9. Кнопка Вход (бывшая Далее) */
+.login-submit-btn {
+  /* Размеры и форма (уже настроены ранее) */
+  width: 100%;
+  max-width: 392px;
+  height: 56px;
+  border-radius: 20px;
+  background-color: #F3F5F5;
+  border: none;
+  cursor: pointer;
+
+  /* Центрирование текста */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  /* --- ТОЧНЫЕ ПАРАМЕТРЫ ТЕКСТА --- */
+  font-family: 'Manrope', sans-serif; /* fontFamily */
+  font-weight: 600;                   /* SemiBold */
+  font-size: 16px;                    /* fontSize/16 */
+  line-height: 24px;                  /* lineHeight/24 */
+  letter-spacing: 0%;
+  text-align: center;
+  color: #BCC8CC;
+  
+  /* Убираем лишние отступы, чтобы line-height работал точно */
+  padding: 0; 
+  box-sizing: border-box;
+}
+
+/* Состояние кнопки когда всё введено верно */
+.login-submit-btn.valid {
+  background-color: #2494B3; /* Тот самый синий цвет */
+  color: #FFFFFF;            /* Белый текст для контраста */
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3); /* Легкое свечение */
+}
+
+/* Опционально: эффект при наведении на синюю кнопку */
+.login-submit-btn.valid:hover {
+  background-color: #0056b3;
+}
+
+/* Для плавного перехода цвета */
+.login-submit-btn {
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 10. Соцсети */
+.social-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* 1. Серые кнопки Google и Yandex */
+.social-login-btn {
+  /* Размеры */
+  width: 100%;
+  height: 56px;
+  
+  /* Фон и границы как на макете */
+  background-color: #C9C9C9; /* Светло-серый фон */
+  border: none;
+  border-radius: 16px;
+  
+  /* Твои параметры текста */
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px; /* lineHeight/24 */
+  letter-spacing: 0%;
+  text-align: center;
+  color: #FFFFFF;
+
+  /* Центровка содержимого */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: background 0.2s;
+}
+
+.social-login-btn:hover {
+  background-color: #2494B3;
+}
+
+.footer-hint {
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+}
+
+.signup-link {
+  color: #323333;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Главный фрейм под логотипом и заголовком */
+.hh-main-frame {
+  width: 392px;
+  height: 332px;
+  display: flex;
+  flex-direction: column;
+  /* Уменьши этот gap, если кнопки все еще далеко от чекбокса */
+  gap: 16px; 
+  opacity: 1;
+}
+
+.hh-info-card {
+  width: 392px !important;
+  height: auto !important;
+  min-height: 112px !important;
+  background: #F2F5F5 !important; /* Серый фон */
+  border-radius: 20px !important;
+  padding: 16px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 16px !important; /* Отступ между иконкой и текстом */
+  box-sizing: border-box !important;
+  align-items: center !important;
+}
+
+/* Иконка звезды */
+.hh-star-icon {
+  width: 40px;
+  height: 40px;
+  flex: none; /* Чтобы не сжималась */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Текст описания */
+.hh-description {
+  flex: 1 !important;
+  font-family: 'Manrope', sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
+  color: #000000 !important;
+  margin: 0 !important;
+  
+  /* Правила переноса */
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  overflow: visible !important;
+}
+
+/* Контейнер для чекбокса и кнопок */
+.hh-action-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Фрейм подтверждения условий */
+/* 1. Контейнер чекбокса и текста */
+.agreement-frame {
+  width: 392px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important; /* Важно: выравнивание по верху */
+  gap: 8px !important;
+  margin-top: 16px !important; /* Добавим отступ сверху */
+}
+
+/* 2. Текст согласия */
+.agreement-label {
+  /* Занимает всё место, кроме чекбокса */
+  flex: 1 !important; 
+  
+  font-family: 'Manrope', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #797F7F;
+  
+  /* --- ПРИНУДИТЕЛЬНЫЙ ПЕРЕНОС --- */
+  display: block !important;
+  word-wrap: break-word !important;
+  white-space: normal !important;
+  
+  cursor: pointer;
+  user-select: none;
+  margin: 0 !important;
+}
+
+/* 3. Убедимся, что wrapper чекбокса не сжимается */
+.checkbox-wrapper {
+  width: 40px !important;
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  margin-top: 2px; /* подними/опусти по вкусу */
+}
+
+/* Сам чекбокс */
+.custom-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  border-radius: 4.5px;
+  border: 1px solid #D2D9D9;
+  background: #ffffff;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.custom-checkbox:checked {
+  background-color: #24B3AC;
+  border-color: #24B3AC;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='7' viewBox='0 0 10 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 3L4 6L9 1' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 12px 9px; /* было 10x7, увеличили */
+}
+
+/* Текстовый блок (Textbox) */
+.agreement-textbox {
+  width: 344px;
+  /* Если в ТЗ height: 60px, но текста мало, 
+     можно поставить height: auto, чтобы он не занимал лишнее место */
+  height: auto; 
+  min-height: 48px; 
+}
+
+/* Лейбл с текстом */
+.agreement-label {
+  width: 344px;
+  height: 60px;
+  
+  /* Типографика из ТЗ */
+  font-family: 'Manrope', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px; /* line-height 24px */
+  color: #797F7F; /* Цвет из ТЗ */
+  
+  letter-spacing: 0%;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Контейнер Frame (392x112) */
+.hh-buttons-frame {
+  width: 392px;
+  height: 112px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  
+  /* Меняем margin-top с 24px на 8px или вообще убираем */
+  margin-top: 8px; 
+}
+
+.btn-hh-accent {
+  width: 392px;
+  height: 56px;
+  border-radius: 20px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Плавный переход цвета */
+}
+
+/* Состояние НЕ АКТИВНА (чекбокс не нажат) */
+.btn-hh-accent.disabled {
+  background-color: #CC8F8F; /* Розовый */
+  cursor: not-allowed;
+  opacity: 1; /* Убираем стандартную прозрачность, если она была */
+}
+
+/* Состояние АКТИВНА (чекбокс нажат) */
+.btn-hh-accent.static {
+  background-color: #B24949 !important; /* Используем точный цвет из дизайна */
+  cursor: pointer !important;
+}
+
+/* Ховер эффект для активной кнопки (по желанию) */
+.btn-hh-accent.static:hover {
+  background-color: #a13d3d; 
+}
+
+.btn-hh-text {
+  font-family: 'Manrope', sans-serif !important; 
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #FFFFFF;
+}
+
+/* Button 2 (212x40) */
+.btn-switch-text {
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  margin-top: 10px !important; /* Добавим небольшой отступ сверху */
+}
+
+.btn-switch-label {
+  font-family: 'Manrope', sans-serif !important; 
+  font-weight: 400 !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  color: #BCC8CC !important; /* Серый цвет из Figma */
+  text-decoration: none !important;
+}
+
+.btn-switch-text:hover .btn-switch-label {
+  color: #797F7F; /* Оживляем при наведении */
+}
+
+/* Поле с ошибкой */
+/* Поле с ошибкой */
+.input-error {
+  border-color: #E0057E !important;  /* было #E53935 */
+}
+
+/* Текст ошибки под полями */
+.login-error-text {
+  width: 392px;
+  font-family: 'Open Sans', sans-serif;  /* было Manrope */
+  font-weight: 400;                       /* было 500 */
+  font-size: 14px;                        /* было 13px */
+  line-height: 20px;                      /* было 18px */
+  color: #E0057E;                         /* было #E53935 */
+  text-align: left;
+  margin: 0;
+}

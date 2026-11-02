@@ -1,0 +1,67 @@
+.hero-frame {
+  width: 100%;
+  /* Вместо жестких 800px используем расчет: 100% экрана минус хедер и футер */
+  height: calc(100vh - 160px);
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Центрируем серый блок по вертикали */
+  padding: 0 12px;
+  background-color: #FFFFFF;
+}
+
+/* Серый блок */
+.hero-gray-box {
+  width: 100%;
+  max-width: 1896px;
+  /* Блок будет занимать всю доступную высоту внутри hero-frame */
+  height: 100%;
+  background-color: #D2D2D2;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Frame Text (Контейнер для текста) */
+/* Контейнер для текста внутри серого блока */
+.hero-text-frame {
+  width: 621px;
+  /* Высота из твоих данных: ~214px */
+  height: 213.8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* Gap 64px между заголовком и параграфом */
+  gap: 64px;
+  text-align: center;
+}
+
+.hero-title {
+  width: 606px;
+  height: 71.8px;
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 400;
+  font-size: 58.3px;
+  /* Line-height 100% (58.3px) */
+  line-height: 58.3px;
+  color: #FFFFFF;
+  margin: 0;
+  /* Для выравнивания по вертикали middle как в Figma */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-description {
+  width: 621px;
+  height: 78px;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  /* Line-height 26px */
+  line-height: 26px;
+  color: #FFFFFF;
+  margin: 0;
+  text-align: center;
+}

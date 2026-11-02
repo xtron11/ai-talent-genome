@@ -1,0 +1,508 @@
+/* Используем твои настройки из PageAnalyzer для консистентности */
+.main-frame {
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+  /* padding убран — берётся из common.css */
+}
+
+.content-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Уменьшили gap, чтобы всё влезло */
+}
+
+.main-content-frame {
+  display: flex;
+  flex-direction: column;
+  gap: 20px !important; /* Уменьшаем стандартный разрыв между всеми блоками */
+}
+.vacancy-title {
+  white-space: nowrap;
+}
+/* Контейнер для выравнивания */
+.candidate-input-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;        /* Расстояние между самим инпутом и текстом подсказки */
+  margin-bottom: 0 !important; 
+}
+
+/* Поле ввода (Wrapper) */
+.candidate-input-field {
+  position: relative;
+  width: 695px;
+  height: 56px;
+  background-color: #F2F5F5;
+  border-radius: 16px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+}
+
+.candidate-input-native {
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: 'Manrope';
+  font-size: 16px;
+  color: #606367;
+}
+
+.candidate-input-native::placeholder {
+  color: #606367;
+  opacity: 0.6;
+}
+
+/* Подсказка (Label) под инпутом */
+.candidate-input-label {
+  margin: 0; 
+  padding: 0;
+  line-height: 18px;
+  color: #919999;
+}
+
+.input-hint {
+  font-size: 12px;
+  color: #BCC8CC;
+  margin-top: 8px;
+}
+
+.upload-drop-zone-resume {
+  display: flex;
+  /* Центрирует содержимое по ГОРИЗОНТАЛИ */
+  justify-content: center; 
+  
+  /* Центрирует содержимое по ВЕРТИКАЛИ (именно это тебе нужно) */
+  align-items: center;     
+  
+  flex: 1;
+  background: #F2F5F5;
+  border: 2px dashed #E5E8E8;
+  border-radius: 48px;
+}
+
+/* Контейнер, в котором лежит кнопка и текст под ней */
+.upload-center-content {
+  display: flex;
+  /* Выстраиваем элементы в колонку: кнопка, потом текст */
+  flex-direction: column;  
+  
+  /* Центрируем их относительно друг друга */
+  align-items: center;     
+  
+  /* Расстояние между кнопкой и плашками PDF/WORD */
+  gap: 10px;               
+}
+
+/* Состояние загрузки: анимированная рамка */
+.upload-drop-zone-resume.loading {
+  background: #E5F9FA; /* Голубоватый фон из макета */
+  border: 2px dashed #2494B3;
+  animation: border-dance 2s infinite linear;
+}
+
+.upload-center-content.success-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Расстояние от карточки до надписи "Резюме загружено" */
+  gap: 8px; 
+}
+
+@keyframes border-dance {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: 10; }
+}
+
+/* Карточка файла в центре */
+.file-preview-card {
+  width: 140px;
+  height: 160px;
+  background: #FFFFFF;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
+  position: relative;
+  margin-bottom: 8px; /* Дополнительный зазор снизу */
+}
+
+.file-icon-placeholder {
+  font-size: 40px;
+  margin-bottom: 8px;
+}
+
+.file-name-info {
+  font-size: 12px;
+  color: #798080;
+  text-align: center;
+  padding: 0 8px;
+  word-break: break-all;
+}
+
+/* Кнопка удаления (крестик сверху справа карточки) */
+.remove-file-btn {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 24px;
+  height: 24px;
+  background: #2494B3;
+  color: white;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+/* Анимация спиннера */
+.spinner-icon {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #BCC8CC;
+  border-top: 2px solid #2494B3;
+  border-radius: 50%;
+  animation: spin 1s infinite linear;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-row, .success-row {
+  display: flex;
+  align-items: center;
+  font-family: 'Manrope';
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.loading-text { color: #2494B3; }
+.success-text { color: #2494B3; margin-left: 8px; }
+
+/* Кнопка "Далее" внутри зоны */
+.btn-next-step {
+  margin-top: 8px;
+  background: #2494B3;
+  color: white;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Кнопка загрузки Extra Large (225x56) */
+.btn-upload-resume-xl {
+  width: 225px;
+  height: 56px;
+  min-width: 56px;
+  background-color: #2494B3;
+  border-radius: 20px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 24px;
+  cursor: pointer;
+  color: #FFFFFF;
+}
+
+.btn-upload-text {
+  width: 145px;
+  height: 24px;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+}
+
+/* Общий фрейм форматов */
+.formats-frame {
+  width: 221.95px;
+  height: 22.62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.formats-text-main {
+  width: auto; /* Для гибкости "в формате" и "или" */
+  height: 18px;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #798080;
+  text-align: center;
+}
+
+/* Общий стиль для текста внутри баджей */
+.badge-text {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+/* Бадж PDF */
+.badge-pdf-frame {
+  width: 43.47px;
+  height: 22.62px;
+  background: #CC5952;
+  border-radius: 11.55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.31px 9.24px;
+  box-sizing: border-box;
+}
+
+/* Бадж WORD */
+.badge-word-frame {
+  width: 60.47px;
+  height: 22.62px;
+  background: #3D7299;
+  border-radius: 11.55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.31px 9.24px;
+  box-sizing: border-box;
+}
+
+/* Контейнер футера для разнесения кнопок по краям */
+.bottom-buttons-container-resume {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Общие базовые стили кнопок резюме */
+.btn-resume-back,
+.btn-resume-save {
+  height: 48px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 20px;
+  padding: 12px 24px; /* s = 12px */
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Текст внутри кнопок (SemiBold 16/24) */
+.btn-resume-text {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+}
+
+/* --- КНОПКА: ЗАГРУЗИТЬ ВАКАНСИЮ (Secondary) --- */
+.btn-resume-back {
+  width: 237px;
+  min-width: 44px;
+  background: transparent;
+  border: 1.6px solid #2494B3;
+  color: #2494B3;
+  white-space: nowrap;
+}
+
+.btn-resume-back svg {
+  color: #2494B3;
+}
+
+/* --- КНОПКА: СОХРАНИТЬ ЧЕРНОВИК (Primary) --- */
+.btn-resume-save {
+  width: 212px;
+  min-width: 48px;
+  background: #919999;
+  border: none;
+  color: #FFFFFF;
+}
+
+.btn-resume-save .btn-resume-text {
+  color: #FFFFFF;
+}
+
+/* Эффекты при наведении */
+.btn-resume-back:hover {
+  background: rgba(36, 148, 179, 0.05);
+}
+
+.btn-resume-save:hover {
+  filter: brightness(0.9);
+}
+.home-bottom-nav {
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+.bottom-buttons-container-resume {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+/* Контейнер для строки "в формате MP3 / MP4 / MOV" */
+.formats-container-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Расстояние между "в формате" и списком */
+  margin-top: 4px;
+}
+
+.formats-label {
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  color: #798080;
+  white-space: nowrap;
+}
+
+/* Группа самих форматов */
+/* Общий контейнер для строки с форматами */
+.formats-container-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+/* Текст "в формате" */
+.formats-label {
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+  color: #798080;
+}
+
+/* Группа баджей */
+.format-badges-group {
+  display: flex;
+  align-items: center;
+  gap: 11.55px; /* Твой параметр gap из Figma */
+}
+
+/* Стиль самого баджа (плашки) */
+.format-badge-item {
+  /* Размеры из твоего ТЗ */
+  width: 46.47px;
+  height: 22.62px;
+  background-color: #919999; /* Твой цвет фона */
+  border-radius: 11.55px;    /* Твое скругление */
+  
+  /* Внутренние отступы */
+  padding: 2.31px 9.24px;
+  
+  /* Центрирование текста внутри */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+/* Текст внутри баджа (MP3, MP4, MOV) */
+.format-badge-text {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #FFFFFF; /* Белый цвет текста */
+  text-align: center;
+  /* Убираем лишние отступы у текста */
+  margin: 0;
+  display: block;
+  width: 28px; /* Твой параметр ширины текста */
+  height: 18px; /* Твой параметр высоты текста */
+}
+
+.format-divider {
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  color: #BCC8CC;
+}
+
+/* Исправление кнопки, чтобы текст не съезжал вниз */
+.btn-upload-resume-xl {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: auto; /* Позволяем кнопке расширяться под длинный текст */
+  max-width: 400px; 
+}
+
+.btn-upload-text {
+  white-space: normal; /* Разрешаем перенос, если кнопка узкая */
+  text-align: left;
+}
+/* 3. Оверлей теперь позиционируется относительно поля ввода */
+/* Оверлей теперь Fixed, чтобы не зависеть от overflow родителя */
+/* --- ИСПРАВЛЕННЫЕ СТИЛИ --- */
+
+/* Оверлей теперь прозрачный и не блокирует клики, он нужен только для z-index */
+.resume-modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  z-index: 1000;
+  pointer-events: none; /* Чтобы клики проходили сквозь */
+}
+
+.resume-modal-content {
+  background-color: white !important;
+  padding: 16px 20px !important;
+  border-radius: 16px !important;
+  font-family: 'Manrope', sans-serif !important;
+  font-size: 14px !important;
+  color: #1a1a1a !important;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1) !important;
+  
+  position: absolute !important;
+  left: calc(100% + 20px) !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  white-space: nowrap !important;
+  z-index: 9999 !important; /* Убедимся, что она сверху */
+  
+  /* ... хвостик ... */
+  
+  /* Стрелочка (хвостик) слева */
+  &:after {
+    content: '';
+    position: absolute;
+    left: -10px; /* Выносим за пределы белого блока */
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 10px 10px 10px 0; /* Размер стрелки */
+    border-style: solid;
+    border-color: transparent #ffffff transparent transparent; /* Цвет стрелки */
+  }
+}

@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+sqlalchemy[asyncio]
+asyncpg
+bcrypt
+pydantic
+pydantic-settings
+httpx

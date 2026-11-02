@@ -1,0 +1,252 @@
+/* ============================================================
+   RegisterModal.css — дополнительные стили для регистрации
+   ============================================================ */
+
+/* Общий фрейм шага 2: width 392, height 372, gap 24 */
+.register-step2-frame {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Frame пароля: width 392, height 82, gap 8 */
+.register-password-frame {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Лейбл над полем пароля */
+.register-field-label {
+  display: block;
+  width: 100%;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0%;
+  color: #323333;
+  margin: 0;
+}
+
+/* Поле контакта на шаге 2 — серый текст, не редактируется */
+.register-input-readonly {
+  color: #919999 !important;
+  background: #F9F9F9 !important;
+  cursor: default !important;
+}
+
+/* Блок требований к паролю */
+.password-rules {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.password-rules-title {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  color: #797F7F;
+  margin: 0 0 4px 0;
+}
+
+/* Одно требование */
+.password-rule {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.password-rule span {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  color: #BCC8CC; /* неактивное */
+  transition: color 0.2s;
+}
+
+/* Выполненное требование */
+.password-rule span.rule-valid {
+  color: #2494B3; /* из Фигмы */
+}
+
+/* ============================================================
+   Экран успеха — аккаунт подтверждён
+   ============================================================ */
+.success-frame {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 8px 0;
+}
+
+.success-title {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 30px;
+  color: #323333;
+  text-align: center;
+  margin: 0;
+}
+
+.success-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Переопределяем размер modal-content когда внутри confirm */
+.modal-content:has(.confirm-frame) {
+  width: 490px !important;
+  min-height: unset !important;
+  height: auto !important;
+  padding: 32px 64px !important;
+  gap: 24px !important;
+}
+
+.confirm-frame {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  white-space: nowrap;
+  align-items: center;
+  gap: 24px;
+}
+
+.confirm-description {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #797F7F;
+  text-align: center;
+  margin: 0;
+  white-space: nowrap; /* не переносить */
+}
+
+.confirm-hint {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #797F7F;
+  text-align: center;
+  margin: 0;
+}
+
+/* OTP — 6 ячеек */
+.otp-frame {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+/* Ячейка: 48×64, border-radius 12, padding 8 12 */
+.otp-cell {
+  width: 48px;
+  height: 64px;
+  padding: 8px 12px;
+  border: none;              /* без контуров */
+  border-radius: 12px;
+  background: #F0F0F0;       /* из Фигмы */
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  color: #323333;
+  outline: none;
+  box-sizing: border-box;
+  transition: background 0.2s;
+  caret-color: #2494B3;
+}
+
+.otp-cell:focus {
+  background: #FFFFFF;
+  box-shadow: 0 0 0 1.5px #2494B3; /* фокус через box-shadow, не border */
+}
+
+.otp-cell:not(:placeholder-shown) {
+  background: #F0F0F0;
+}
+
+.otp-cell-valid {
+  background: #FFFFFF !important;
+  box-shadow: 0 0 0 1.5px #2494B3 !important;
+}
+
+.otp-cell-error {
+  background: #FFF5F5 !important;
+  box-shadow: 0 0 0 1.5px #E53935 !important;
+}
+
+/* Текст ошибки */
+.otp-error-text {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+  color: #E53935;
+  text-align: center;
+  margin: 0;
+}
+
+/* Таймер "Отправить код повторно" */
+.otp-resend {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0%;
+  text-align: center;
+  color: #606367;
+  width: 362px;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.otp-resend-link {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  color: #2494B3;
+  cursor: pointer;
+  margin: 0;
+}
+
+.otp-resend-link:hover {
+  text-decoration: underline;
+}
+
+.phone-exists-error {
+  width: 392px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  color: #E0057E;
+  margin: 0;
+}
+
+.phone-exists-login {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: #323333;
+  cursor: pointer;
+}
+
+.phone-exists-login:hover {
+  color: #1e7d96;
+}

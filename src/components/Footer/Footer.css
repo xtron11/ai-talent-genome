@@ -1,0 +1,68 @@
+.footer-container {
+  width: 100%;
+  height: clamp(64px, 5vw, 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 clamp(80px, 10.4vw, 200px); /* идентично header */
+  box-sizing: border-box;
+  margin-top: auto;
+}
+
+.footer-main-frame {
+  width: 100%;
+  max-width: 1920px;
+  display: flex;
+  align-items: center;
+}
+
+.footer-column {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.footer-left   { justify-content: flex-start; }
+.footer-center { justify-content: center; }
+.footer-right  { justify-content: flex-end; }
+
+.footer-text {
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(12px, 0.73vw, 14px);
+  font-weight: 400;
+  color: #323333;
+  white-space: nowrap;
+}
+
+.footer-social-frame {
+  display: flex;
+  gap: 8px;
+}
+
+.social-icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #919999;
+  display: flex;
+  align-items: center;     /* ← вертикальное центрирование */
+  justify-content: center; /* ← горизонтальное центрирование */
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* Варианты фона */
+.footer-main  { background: #FFFFFF; }
+.footer-inner { background: #F5F5F5; }
+
+@media (max-width: 1440px) {
+  .footer-container { padding: 0 80px; }
+}
+
+@media (min-width: 1441px) and (max-width: 1680px) {
+  .footer-container { padding: 0 120px; }
+}
+
+@media (min-width: 1681px) {
+  .footer-container { padding: 0 200px; }
+}

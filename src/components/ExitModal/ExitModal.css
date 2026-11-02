@@ -1,0 +1,79 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Затемнение фона */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  width: 500px;
+  padding: 40px;
+  border-radius: 32px; /* Мягкие углы как на фото */
+  position: relative;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.modal-close-x {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #798080;
+}
+
+.modal-title {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: #1A1C1C;
+  margin-bottom: 16px;
+}
+
+.modal-text {
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  color: #454D4D;
+  margin-bottom: 32px;
+  line-height: 1.4;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+/* Кнопка "Сохранить/Продолжить" */
+.btn-modal-save {
+  background: #2494B3;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  flex: 1;
+}
+
+/* Кнопка "Выйти" */
+.btn-modal-exit {
+  background: #919999;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  flex: 1;
+}
